@@ -261,4 +261,4 @@ def main(page: ft.Page):
         ft.Row([user_input, send_btn])
     )
 
-ft.app(target=main)
+ft.run(main)
