@@ -28,7 +28,8 @@ jobs:
 
       - name: Build APK
         run: |
-          flet build apk app_mobile.py --project "Xici" --product "你好，汐辞" --yes
+          mv app_mobile.py main.py
+          flet build apk . --project "Xici" --product "你好，汐辞" --yes
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
