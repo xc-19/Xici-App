@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-22.04  # 固定用 22.04，绝不用最新的 24.04，避开系统抽风
+    runs-on: ubuntu-22.04  # 使用稳定版系统，避开云端最新的幺蛾子
 
     steps:
       - name: Checkout
@@ -30,7 +30,7 @@ jobs:
       - name: Build APK
         run: |
           mv app_mobile.py main.py
-          flet build apk . --project "Xici" --product "你好，汐辞" --yes --android-licenses
+          flet build apk . --project "Xici" --product "你好，汐辞" --yes
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
