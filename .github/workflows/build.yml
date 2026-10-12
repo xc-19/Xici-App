@@ -9,6 +9,10 @@ jobs:
   build:
     runs-on: ubuntu-22.04
 
+    # 【终极杀手锏】强制锁定 Python 环境，制止它去编译 3.14.7
+    env:
+      SERIOUS_PYTHON_PYTHON_VERSION: '3.11.9'
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -24,7 +28,6 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
 
-      # 【终极修复】安装编译 Python 和 Linux 所需的全部 C 语言基础依赖库
       - name: Install System Dependencies
         run: |
           sudo apt-get update
