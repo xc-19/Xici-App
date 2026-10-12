@@ -23,15 +23,16 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
 
-      # 【核心修复】自动接受安卓 SDK 许可证
-      - name: Accept Android SDK Licenses
-        run: |
-          mkdir -p $ANDROID_HOME/licenses
-          echo "8933bad161af4178b1185d1a37fbf41ea5269c55" > $ANDROID_HOME/licenses/android-sdk-license
-          echo "d56f5187479451eabf01fb78af6dfcb131a6481e" >> $ANDROID_HOME/licenses/android-sdk-license
+      # 【核心修复】使用官方 Action 自动配置 Android 环境并接受许可
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
 
       - name: Install Flet
         run: pip install flet
+
+      # 强制签署协议（防止再次卡住）
+      - name: Accept Android Licenses
+        run: yes | flutter doctor --android-licenses || true
 
       - name: Build APK
         run: |
