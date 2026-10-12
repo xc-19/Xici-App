@@ -24,7 +24,7 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
 
-      # 【终极修复】强制下载安卓签名工具并自动签署所有许可
+      # 强制下载安卓签名工具并自动签署所有许可
       - name: Force Accept Android Licenses
         run: |
           export ANDROID_HOME=/usr/local/lib/android/sdk
