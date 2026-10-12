@@ -124,7 +124,7 @@ def update_emotion(user_text):
     state["last_interact_time"] = now
     save_state(state)
     def main(page: ft.Page):
-    page.title = "你好，汐辞"
+        page.title = "你好，汐辞"
     page.theme_mode = ft.ThemeMode.LIGHT
     
     avatar_base64 = None
