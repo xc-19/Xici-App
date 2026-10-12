@@ -48,10 +48,11 @@ jobs:
       - name: Install Flet
         run: pip install flet==0.28.3
 
+      # 构建 APK（去掉了多余的 --yes）
       - name: Build APK
         run: |
           mv app_mobile.py main.py
-          flet build apk . --project "Xici" --product "你好，汐辞" --yes
+          flet build apk . --project "Xici" --product "你好，汐辞"
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
