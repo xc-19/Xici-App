@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-22.04  # 使用稳定版系统，避开云端最新的幺蛾子
+    runs-on: ubuntu-22.04
 
     steps:
       - name: Checkout
@@ -23,6 +23,20 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: '17'
+
+      # 【终极修复】强制下载安卓签名工具并自动签署所有许可
+      - name: Force Accept Android Licenses
+        run: |
+          export ANDROID_HOME=/usr/local/lib/android/sdk
+          mkdir -p $ANDROID_HOME/cmdline-tools
+          if [ ! -d "$ANDROID_HOME/cmdline-tools/latest" ]; then
+            wget https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip -O cmdline-tools.zip
+            unzip cmdline-tools.zip -d $ANDROID_HOME/cmdline-tools
+            mv $ANDROID_HOME/cmdline-tools/cmdline-tools $ANDROID_HOME/cmdline-tools/latest
+            rm cmdline-tools.zip
+          fi
+          yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
+        shell: bash
 
       - name: Install Flet
         run: pip install flet
