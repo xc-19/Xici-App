@@ -146,7 +146,7 @@ def main(page: ft.Page):
             return ft.Container(
                 content=ft.Text("汐", color=ft.Colors.WHITE, size=16, weight=ft.FontWeight.BOLD),
                 width=40, height=40, bgcolor=ft.Colors.BLUE_400, border_radius=20,
-                alignment=ft.alignment.center
+                alignment=ft.Alignment.CENTER
             )
     
     chat_list = ft.ListView(expand=True, spacing=10, padding=20, auto_scroll=True)
