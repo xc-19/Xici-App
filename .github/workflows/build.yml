@@ -24,6 +24,12 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
 
+      # 【核心修复】安装 Flutter 构建所需的 Linux 图形库，解决 Flutter Doctor 报错
+      - name: Install Linux Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libgtk-3-dev mesa-utils
+
       # 强制下载安卓签名工具并自动签署所有许可
       - name: Force Accept Android Licenses
         run: |
