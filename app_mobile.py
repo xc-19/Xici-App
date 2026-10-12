@@ -125,7 +125,7 @@ def update_emotion(user_text):
     save_state(state)
     def main(page: ft.Page):
         page.title = "你好，汐辞"
-    page.theme_mode = ft.ThemeMode.LIGHT
+        page.theme_mode = ft.ThemeMode.LIGHT
     
     avatar_base64 = None
     avatar_path = "avatar.jpg"
