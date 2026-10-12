@@ -235,7 +235,7 @@ def main(page: ft.Page):
         update_emotion(user_text)
         save_history()
 
-    send_btn = ft.ElevatedButton(text="发送", on_click=send_message)
+    send_btn = ft.Button(content=ft.Text("发送"), on_click=send_message)
 
     def show_reset_dialog(e):
         dialog = ft.AlertDialog(
