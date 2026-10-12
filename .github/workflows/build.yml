@@ -7,7 +7,8 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04  # 固定用 22.04，绝不用最新的 24.04，避开系统抽风
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -23,21 +24,13 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
 
-      # 【核心修复】使用官方 Action 自动配置 Android 环境并接受许可
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
-
       - name: Install Flet
         run: pip install flet
-
-      # 强制签署协议（防止再次卡住）
-      - name: Accept Android Licenses
-        run: yes | flutter doctor --android-licenses || true
 
       - name: Build APK
         run: |
           mv app_mobile.py main.py
-          flet build apk . --project "Xici" --product "你好，汐辞" --yes
+          flet build apk . --project "Xici" --product "你好，汐辞" --yes --android-licenses
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
